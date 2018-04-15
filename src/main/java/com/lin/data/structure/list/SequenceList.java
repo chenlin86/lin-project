@@ -4,6 +4,7 @@ import java.util.Arrays;
 
 /**
  * 顺序线性表
+ * 采用数组实现，通过数组的下标来实现顺序记录，必须是连续的。
  * @author chenlin
  * @param <T>
  */
