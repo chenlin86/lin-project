@@ -6,10 +6,9 @@ import java.util.Arrays;
  * 顺序线性表
  * 采用数组实现，通过数组的下标来实现顺序记录，必须是连续的。
  * @author chenlin
- * @param <T>
  */
-public class SequenceList<T> {
-
+public class SequenceList<E> {
+    
     private final int DEFAULT_SIZE = 16;
     // 数组的容量
     private int capacity;
@@ -31,7 +30,7 @@ public class SequenceList<T> {
      * 初始化一个元素的线性表
      * @param element
      */
-    public SequenceList(T element) {
+    public SequenceList(E element) {
         this.capacity = DEFAULT_SIZE;
         this.elementData = new Object[capacity];
         elementData[0] = element;
@@ -43,7 +42,7 @@ public class SequenceList<T> {
      * @param element
      * @param initSize
      */
-    public SequenceList(T element,int initSize) {
+    public SequenceList(E element,int initSize) {
         this.capacity = 1;
         while(capacity<initSize) {
             capacity <<=1;
@@ -68,11 +67,11 @@ public class SequenceList<T> {
      * @return
      */
     @SuppressWarnings("unchecked")
-    public T get(int index) {
+    public E get(int index) {
         if(index<0||index>size-1) {
             throw new RuntimeException("线性表下标越界");
         }
-        return (T)elementData[index];
+        return (E)elementData[index];
     }
     
     /**
@@ -80,7 +79,7 @@ public class SequenceList<T> {
      * @param element
      * @return
      */
-    public int index(T element) {
+    public int index(E element) {
         for(int i=0;i<size;i++) {
             if(elementData[i].equals(element)) {
                 return i;
@@ -94,7 +93,7 @@ public class SequenceList<T> {
      * @param element
      * @param index
      */
-    public void insert(T element,int index) {
+    public void insert(E element,int index) {
         if(index<0||index>size) {
             throw new RuntimeException("线性表下标越界");
         }
@@ -124,7 +123,7 @@ public class SequenceList<T> {
      * 顺序表添加元素(在表最后一个元素后追加元素)
      * @param element
      */
-    public void add(T element) {
+    public void add(E element) {
         insert(element,size);
     }
     
@@ -134,11 +133,11 @@ public class SequenceList<T> {
      * @return
      */
     @SuppressWarnings("unchecked")
-    public T delete(int index) {
+    public E delete(int index) {
         if(index<0||index>size-1) {
             throw new RuntimeException("线性表下标越界");
         }
-        T oldValue = (T)elementData[index];
+        E oldValue = (E)elementData[index];
         // 需要移动元素为该下标之后的所有元素
         int numMoved = size - index -1 ;
         // 如果不是最后一个元素，需要移动删除之后的元素，前进一位
@@ -154,7 +153,7 @@ public class SequenceList<T> {
      * 删除最后一个元素
      * @return
      */
-    public T remove() {
+    public E remove() {
         return delete(size-1);
     }
     
