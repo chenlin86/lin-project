@@ -44,10 +44,10 @@ public class SequenceList<E> {
      */
     public SequenceList(E element,int initSize) {
         this.capacity = 1;
+        // 容量为大于初始化容量的扩展容量的2的倍数
         while(capacity<initSize) {
             capacity <<=1;
         }
-        this.capacity = DEFAULT_SIZE;
         this.elementData = new Object[capacity];
         elementData[0] = element;
         this.size = 1;
@@ -99,7 +99,7 @@ public class SequenceList<E> {
         }
         // 判断数组扩容
         ensureCapacity(size+1);
-        // 将制定索引处的所有元素向后移动一倍
+        // 将指定索引处的所有元素向后移动一位
         System.arraycopy(elementData, index, elementData, index+1, size-index);
         elementData[index] = element;
         size++;
@@ -173,12 +173,17 @@ public class SequenceList<E> {
         size = 0;
     }
     
+    /**
+     * toString
+     */
     public String toString() {
         if(size==0) {
             return "[]";
         }else {
             StringBuilder sb = new StringBuilder("[");
-            Arrays.stream(elementData).filter(e->e!=null).forEach(e->sb.append(e).append(","));
+            for(int i=0;i<size;i++) {
+                sb.append(elementData[i]).append(","); 
+            }
             // 删除最后一个,号并追加上]
             return sb.deleteCharAt(sb.lastIndexOf(",")).append("]").toString();
         }
