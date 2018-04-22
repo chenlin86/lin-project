@@ -112,7 +112,7 @@ public class SequenceList<E> {
     private void ensureCapacity(int minCapacity) {
         // 如果数组的原长度小于目标最小长度，则需要扩容
         if(minCapacity>capacity) {
-            // 直接直接扩容为原来的capacity的2倍
+            // 直接扩容为原来的capacity的2倍
             capacity<<=1;
             //复制数组
             elementData = Arrays.copyOf(elementData, capacity);
